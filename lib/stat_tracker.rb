@@ -115,7 +115,7 @@ class StatTracker
     percentage(visitor_wins, all_games_count)
   end
 
-  def percentage_of_ties
+  def percentage_ties
     ties = game_teams.find_all do |game|
       game.result == "TIE"
     end.count 
@@ -146,7 +146,7 @@ class StatTracker
 
     # Returns the K/V pair of the team with the highest avg goals per game
     best_offense_team = team_hash.max_by do |team_id, avg_goals_per_game|
-       avg_goals_per_game
+      avg_goals_per_game
     end
 
     best_offense_team_id = best_offense_team[0]
@@ -177,7 +177,7 @@ class StatTracker
 
     # Returns the K/V pair of the team with the highest avg goals per game
     worst_offense_team = team_hash.min_by do |team_id, avg_goals_per_game|
-       avg_goals_per_game
+      avg_goals_per_game
     end
 
     worst_offense_team_id = worst_offense_team[0]
