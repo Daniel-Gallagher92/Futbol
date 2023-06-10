@@ -84,6 +84,12 @@ class StatTracker
 
   # Game Statistics
 
+  # League Statistics
+
+  def count_of_teams
+    @teams.count
+  end
+
   def best_offense
     # Groups teams by team_id into a Hash
     team_hash = game_teams.group_by do |game_team|
@@ -113,12 +119,6 @@ class StatTracker
     end
     
     best_offense_team.team_name
-  end
-
-  # League Statistics
-
-  def count_of_teams
-    @teams.count
   end
 
 end
