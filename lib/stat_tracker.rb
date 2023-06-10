@@ -163,6 +163,9 @@ class StatTracker
     
     worst_offense_team.team_name
   end
+
+  # Season Statistics
+  
   def most_tackles(season)
     team_tackles = Hash.new { |hash, team_id| hash[team_id] = 0 }
   
