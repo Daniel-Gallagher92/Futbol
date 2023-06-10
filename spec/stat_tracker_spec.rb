@@ -121,38 +121,97 @@ RSpec.describe StatTracker do
     end
   end
 
-  describe "#count_of_teams" do
-    it "returns the number of teams in the league" do
-      expect(@stat_tracker.count_of_teams).to be_a(Integer)
-      expect(@stat_tracker.count_of_teams).to eq(32)
+  # Game Statistics Tests
+
+  describe "Game Statistics" do
+     context "#highest_total_score" do
+      it "returns the highest total score" do
+        expect(@stat_tracker.highest_total_score).to be_a(Integer)
+        expect(@stat_tracker.highest_total_score).to eq(11)
+      end
+    end
+
+    context "#lowest_total_score" do
+      it "returns the lowest total score" do
+        expect(@stat_tracker.lowest_total_score).to be_a(Integer)
+        expect(@stat_tracker.lowest_total_score).to eq(0)
+      end
+    end
+
+
+    describe "#all_games_count" do 
+      it "can count all of the games" do 
+        expect(@stat_tracker.all_games_count).to be_a(Integer)
+        expect(@stat_tracker.all_games_count).to eq(7441)
+      end
+    end
+
+    describe "#percentage_home_wins" do 
+      it "can calculate percentage of home wins" do 
+        expect(@stat_tracker.percentage_home_wins).to be_a(Float)
+        expect(@stat_tracker.percentage_home_wins).to eq(0.44)
+      end
+    end
+
+    describe "#percentage_visitor_wins" do 
+      it "can calculate percentage of home wins" do 
+        expect(@stat_tracker.percentage_visitor_wins).to be_a(Float)
+        expect(@stat_tracker.percentage_visitor_wins).to eq(0.36)
+      end
+    end
+
+    describe "#percentage_of_ties" do 
+      it "can calculate percentage of ties" do 
+        expect(@stat_tracker.percentage_ties).to be_a(Float)
+        expect(@stat_tracker.percentage_ties).to eq(0.41)
+      end
+    end
+  
+  end
+
+  # League Statistics Tests
+
+  describe "League Statistics" do
+    describe "#count_of_teams" do
+     it "returns the number of teams in the league" do
+        expect(@stat_tracker.count_of_teams).to be_a(Integer)
+        expect(@stat_tracker.count_of_teams).to eq(32)
+      end
+    end
+    
+    describe "#best_offense" do   
+      it "returns the name of the team w/the highest average number of goals" do
+        best_offense = @stat_tracker.best_offense
+        expect(best_offense).to be_a(String)
+        expect(best_offense).to eq("Reign FC")
+      end
+    end
+
+    describe "#worst_offense" do   
+      it "returns the name of the team w/the lowest average number of goals" do
+        worst_offense = @stat_tracker.worst_offense
+        expect(worst_offense).to be_a(String)
+        expect(worst_offense).to eq("Utah Royals FC")
+      end
     end
   end
 
-  describe "#all_games_count" do 
-    it "can count all of the games" do 
-      expect(@stat_tracker.all_games_count).to be_a(Integer)
-      expect(@stat_tracker.all_games_count).to eq(7441)
+  # Season Statistics Tests
+
+  describe "Season Statistics" do
+
+    describe "#tackles" do
+      it 'returns the team with the most tackles in the given season' do
+        expect(@stat_tracker.most_tackles("20122013")).to be_a(String)
+        expect(@stat_tracker.most_tackles("20122013")).to eq("FC Cincinnati")
+      end
+
+      it 'returns the team with the fewest tackles in the given season' do
+        expect(@stat_tracker.fewest_tackles("20142015")).to be_a(String)
+        expect(@stat_tracker.fewest_tackles("20142015")).to eq("Orlando City SC")
+      end
     end
+    
   end
 
-  describe "#percentage_home_wins" do 
-    it "can calculate percentage of home wins" do 
-      expect(@stat_tracker.percentage_home_wins).to be_a(Float)
-      expect(@stat_tracker.percentage_home_wins).to eq(0.44)
-    end
-  end
-
-  describe "#percentage_visitor_wins" do 
-    it "can calculate percentage of home wins" do 
-      expect(@stat_tracker.percentage_visitor_wins).to be_a(Float)
-      expect(@stat_tracker.percentage_visitor_wins).to eq(0.36)
-    end
-  end
-
-  describe "#percentage_of_ties" do 
-    it "can calculate percentage of ties" do 
-      expect(@stat_tracker.percentage_ties).to be_a(Float)
-      expect(@stat_tracker.percentage_ties).to eq(0.41)
-    end
-  end
 end
