@@ -84,10 +84,22 @@ class StatTracker
 
   # Game Statistics
 
+  def highest_total_score
+    games.map do |game|
+      game.away_goals + game.home_goals
+    end.max
+  end
+
+  def lowest_total_score
+    games.map do |game|
+      game.away_goals + game.home_goals
+    end.min
+  end
+  
   # League Statistics
 
   def count_of_teams
-    @teams.count
+    teams.count
   end
 
   def best_offense
@@ -151,5 +163,4 @@ class StatTracker
     
     worst_offense_team.team_name
   end
-
 end
