@@ -1,6 +1,8 @@
 require "csv"
+require_relative "percentable"
 
 class StatTracker
+include Percentable
 
   def self.from_csv(locations)
     StatTracker.new(locations)
@@ -84,4 +86,15 @@ class StatTracker
     @teams.count
   end
 
+  def all_games_count #Necessary for percentage methods
+    @games.count
+  end
+
+  def percentage_home_wins
+    hometeam_wins = @game_teams.find_all do |game|
+      game.hoa == "home" && game.result == "WIN"
+    end.count 
+    
+    percentage(hometeam_wins, all_games_count)
+  end
 end
