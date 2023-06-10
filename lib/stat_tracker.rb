@@ -91,7 +91,6 @@ class StatTracker
     end
 
     # Changes Hash values into the team's average score
-    # good place to incorporate the average module
     team_hash.transform_values! do |game_teams|
       total_team_goals = game_teams.sum{ |game_team| game_team.goals }
       total_games = game_teams.count
