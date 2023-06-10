@@ -180,6 +180,12 @@ RSpec.describe StatTracker do
         })
       end
     end
+
+    context "#average goals game/season" do 
+      it "returns the average goals per game" do
+        expect(@stat_tracker.average_goals_per_game).to be_a(Float)
+        expect(@stat_tracker.average_goals_per_game).to eq(4.22)
+      end
   
   end
 
