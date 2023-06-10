@@ -1,6 +1,8 @@
 require "csv"
+require "./percentable.rb"
 
 class StatTracker
+  include Percentable
 
   def self.from_csv(locations)
     StatTracker.new(locations)
@@ -94,7 +96,7 @@ class StatTracker
       total_team_goals = game_teams.sum{ |game_team| game_team.goals }
       total_games = game_teams.count
       
-      avg_goals_per_game = total_team_goals / total_games.to_f
+      avg_goals_per_game = percentage(total_team_goals, total_games)
       avg_goals_per_game
     end
 
