@@ -1,6 +1,8 @@
 require "csv"
+require_relative "percentable"
 
 class StatTracker
+  include Percentable
 
   def self.from_csv(locations)
     StatTracker.new(locations)
