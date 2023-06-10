@@ -97,4 +97,11 @@ include Percentable
     
     percentage(hometeam_wins, all_games_count)
   end
+
+  def percentage_visitor_wins
+    visitor_wins = @game_teams.find_all do |game|
+      game.hoa == "away" && game.result == "WIN"
+    end.count 
+    percentage(visitor_wins, all_games_count)
+  end
 end
