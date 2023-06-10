@@ -186,6 +186,19 @@ RSpec.describe StatTracker do
         expect(@stat_tracker.average_goals_per_game).to be_a(Float)
         expect(@stat_tracker.average_goals_per_game).to eq(4.22)
       end
+
+      it "returns average goals in a game for a season" do
+        expect(@stat_tracker.average_goals_per_season).to be_a(Hash)
+        expect(@stat_tracker.average_goals_per_season).to eq({
+          "20122013" => 4.12,
+          "20132014" => 4.19,
+          "20142015" => 4.14,
+          "20152016" => 4.16,
+          "20162017" => 4.23,
+          "20172018" => 4.44,
+        })
+      end
+    end
   
   end
 
