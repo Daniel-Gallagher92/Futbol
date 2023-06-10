@@ -133,6 +133,16 @@ class StatTracker
   
     games_by_season
   end
+
+  def average_goals_per_game
+    total_goals = games.sum { |game| game.away_goals.to_i + game.home_goals.to_i }
+    total_games = games.size
+  
+    return 0 if total_games.zero?
+  
+    average_goals = total_goals.to_f / total_games
+    average_goals.round(2)
+  end
   
   # League Statistics
 
