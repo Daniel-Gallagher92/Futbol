@@ -166,6 +166,20 @@ RSpec.describe StatTracker do
         expect(@stat_tracker.percentage_ties).to eq(0.41)
       end
     end
+
+    context "#count_of_games_by_season" do
+      it "returns the number of games in a season" do
+        expect(@stat_tracker.count_of_games_by_season).to be_a(Hash)
+        expect(@stat_tracker.count_of_games_by_season).to eq({
+          "20122013"=>806,
+          "20132014"=>1323,
+          "20142015"=>1319,
+          "20152016"=>1321,
+          "20162017"=>1317,
+          "20172018"=>1355
+        })
+      end
+    end
   
   end
 
@@ -173,7 +187,7 @@ RSpec.describe StatTracker do
 
   describe "League Statistics" do
     describe "#count_of_teams" do
-    it "returns the number of teams in the league" do
+      it "returns the number of teams in the league" do
         expect(@stat_tracker.count_of_teams).to be_a(Integer)
         expect(@stat_tracker.count_of_teams).to eq(32)
       end
