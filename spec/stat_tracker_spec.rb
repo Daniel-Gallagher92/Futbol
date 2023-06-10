@@ -128,6 +128,12 @@ RSpec.describe StatTracker do
     end
   end
 
+  describe "#all_games_count" do 
+    it "can count all of the games" do 
+      expect(@stat_tracker.all_games_count).to be_a(Integer)
+      expect(@stat_tracker.all_games_count).to eq(7441)
+    end
+  end
   describe "#percentage_home_wins" do 
     it "can calculate percentage of home wins" do 
       expect(@stat_tracker.percentage_home_wins).to be_a(Float)
