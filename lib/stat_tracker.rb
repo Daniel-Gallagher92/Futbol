@@ -80,6 +80,42 @@ class StatTracker
     game_teams
   end
 
+  # Game Statistics
+
+  def best_offense
+    # Groups teams by team_id into a Hash
+    team_hash = game_teams.group_by do |game_team|
+      game_team.team_id
+    end
+
+    # Changes Hash values into the team's average score
+    # good place to incorporate the average module
+    team_hash.transform_values! do |game_teams|
+      total_team_goals = game_teams.sum{ |game_team| game_team.goals }
+      total_games = game_teams.count
+      
+      avg_goals_per_game = total_team_goals / total_games.to_f
+      avg_goals_per_game
+    end
+
+    # Returns the K/V pair of the team with the highest avg goals per game
+    best_offense_team = team_hash.max_by do |team_id, avg_goals_per_game|
+       avg_goals_per_game
+    end
+
+    best_offense_team_id = best_offense_team[0]
+
+    # Finds the matching team from @teams by the team ID
+    # Maybe turn this into a helper method?
+    best_offense_team = @teams.find do |team| 
+      team.team_id == best_offense_team_id
+    end
+    
+    best_offense_team.team_name
+  end
+
+  # League Statistics
+
   def count_of_teams
     @teams.count
   end
