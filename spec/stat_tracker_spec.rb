@@ -121,10 +121,43 @@ RSpec.describe StatTracker do
     end
   end
 
+  # Game Statistics Tests
+
+  describe "Game Statistics" do
+
+  end
+
+  # League Statistics Tests
+
   describe "#count_of_teams" do
     it "returns the number of teams in the league" do
       expect(@stat_tracker.count_of_teams).to be_a(Integer)
       expect(@stat_tracker.count_of_teams).to eq(32)
     end
   end
+
+  describe "League Statistics" do
+    describe "#best_offense" do   
+      it "returns the name of the team w/the highest average number of goals" do
+        best_offense = @stat_tracker.best_offense
+        expect(best_offense).to be_a(String)
+        expect(best_offense).to eq("Reign FC")
+      end
+    end
+
+    describe "#worst_offense" do   
+      it "returns the name of the team w/the lowest average number of goals" do
+        worst_offense = @stat_tracker.worst_offense
+        expect(worst_offense).to be_a(String)
+        expect(worst_offense).to eq("Utah Royals FC")
+      end
+    end
+  end
+
+  # Season Statistics Tests
+
+  describe "Season Statistics" do
+    
+  end
+
 end
