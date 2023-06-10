@@ -200,6 +200,15 @@ RSpec.describe StatTracker do
 
   describe "Season Statistics" do
 
+    describe "#team_accuracy" do
+      it "returns the team with the best ratio of shots/goals for the season" do
+        # expect(@stat_tracker.most_accurate_team("20132014")).to be_a(String)
+        # expect(@stat_tracker.most_accurate_team("20132014")).to eq("Real Salt Lake")
+        expect(@stat_tracker.most_accurate_team("20142015")).to eq("Toronto FC")
+      end
+
+    end
+
     describe "#tackles" do
       it 'returns the team with the most tackles in the given season' do
         expect(@stat_tracker.most_tackles("20122013")).to be_a(String)
