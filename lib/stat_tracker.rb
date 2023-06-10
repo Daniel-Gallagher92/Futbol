@@ -85,34 +85,38 @@ class StatTracker
   end
 
   def most_tackles(season)
-    tackles_by_team = Hash.new(0)
+    team_tackles = Hash.new { |hash, team_id| hash[team_id] = 0 }
   
-    game_teams.each do |game_team|
-      next unless games.find { |game| game.game_id == game_team.game_id && game.season == season }
-  
-      team_id = game_team.team_id
-      tackles = game_team.tackles.to_i
-      tackles_by_team[team_id] += tackles
+    games_for_season = games.select { |game| game.season == season }
+    games_for_season.each do |game|
+      game_teams_for_season = game_teams.select { |game_team| game_team.game_id == game.game_id }
+      game_teams_for_season.each do |game_team|
+        team_id = game_team.team_id
+        tackles = game_team.tackles.to_i
+        team_tackles[team_id] += tackles
+      end
     end
   
-    most_tackles_team_id = tackles_by_team.max_by { |_team_id, tackles| tackles }&.first
+    most_tackles_team_id = team_tackles.max_by { |_team_id, tackles| tackles }&.first
     most_tackles_team = teams.find { |team| team.team_id == most_tackles_team_id }
   
     most_tackles_team&.team_name
   end
-
+  
   def fewest_tackles(season)
-    tackles_by_team = Hash.new(0)
+    team_tackles = Hash.new { |hash, team_id| hash[team_id] = 0 }
   
-    game_teams.each do |game_team|
-      next unless games.find { |game| game.game_id == game_team.game_id && game.season == season }
-  
-      team_id = game_team.team_id
-      tackles = game_team.tackles.to_i
-      tackles_by_team[team_id] += tackles
+    games_for_season = games.select { |game| game.season == season }
+    games_for_season.each do |game|
+      game_teams_for_season = game_teams.select { |game_team| game_team.game_id == game.game_id }
+      game_teams_for_season.each do |game_team|
+        team_id = game_team.team_id
+        tackles = game_team.tackles.to_i
+        team_tackles[team_id] += tackles
+      end
     end
   
-    fewest_tackles_team_id = tackles_by_team.min_by { |_team_id, tackles| tackles }&.first
+    fewest_tackles_team_id = team_tackles.min_by { |_team_id, tackles| tackles }&.first
     fewest_tackles_team = teams.find { |team| team.team_id == fewest_tackles_team_id }
   
     fewest_tackles_team&.team_name
