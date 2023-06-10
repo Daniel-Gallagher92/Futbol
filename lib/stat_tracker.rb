@@ -104,4 +104,12 @@ include Percentable
     end.count 
     percentage(visitor_wins, all_games_count)
   end
+
+  def percentage_of_ties
+    ties = @game_teams.find_all do |game|
+      game.result == "TIE"
+    end.count 
+  
+    percentage(ties, all_games_count)
+  end
 end
