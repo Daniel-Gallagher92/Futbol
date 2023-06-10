@@ -1,5 +1,5 @@
 require "csv"
-require "./percentable.rb"
+require_relative "percentable"
 
 class StatTracker
   include Percentable
@@ -94,6 +94,33 @@ class StatTracker
     games.map do |game|
       game.away_goals + game.home_goals
     end.min
+  end
+  
+  def all_games_count #Necessary for percentage methods
+    games.count
+  end
+
+  def percentage_home_wins
+    hometeam_wins = game_teams.find_all do |game|
+      game.hoa == "home" && game.result == "WIN"
+    end.count 
+    
+    percentage(hometeam_wins, all_games_count)
+  end
+
+  def percentage_visitor_wins
+    visitor_wins = game_teams.find_all do |game|
+      game.hoa == "away" && game.result == "WIN"
+    end.count 
+    percentage(visitor_wins, all_games_count)
+  end
+
+  def percentage_of_ties
+    ties = game_teams.find_all do |game|
+      game.result == "TIE"
+    end.count 
+  
+    percentage(ties, all_games_count)
   end
   
   # League Statistics
@@ -203,5 +230,4 @@ class StatTracker
   
     fewest_tackles_team&.team_name
   end
-
 end

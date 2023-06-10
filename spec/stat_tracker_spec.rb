@@ -124,20 +124,49 @@ RSpec.describe StatTracker do
   # Game Statistics Tests
 
   describe "Game Statistics" do
-   context "#highest_total_score" do
-    it "returns the highest total score" do
-      expect(@stat_tracker.highest_total_score).to be_a(Integer)
-      expect(@stat_tracker.highest_total_score).to eq(11)
+     context "#highest_total_score" do
+      it "returns the highest total score" do
+        expect(@stat_tracker.highest_total_score).to be_a(Integer)
+        expect(@stat_tracker.highest_total_score).to eq(11)
+      end
     end
-  end
 
-  context "#lowest_total_score" do
-    it "returns the lowest total score" do
-      expect(@stat_tracker.lowest_total_score).to be_a(Integer)
-      expect(@stat_tracker.lowest_total_score).to eq(0)
+    context "#lowest_total_score" do
+      it "returns the lowest total score" do
+        expect(@stat_tracker.lowest_total_score).to be_a(Integer)
+        expect(@stat_tracker.lowest_total_score).to eq(0)
+      end
     end
-  end
 
+
+    describe "#all_games_count" do 
+      it "can count all of the games" do 
+        expect(@stat_tracker.all_games_count).to be_a(Integer)
+        expect(@stat_tracker.all_games_count).to eq(7441)
+      end
+    end
+
+    describe "#percentage_home_wins" do 
+      it "can calculate percentage of home wins" do 
+        expect(@stat_tracker.percentage_home_wins).to be_a(Float)
+        expect(@stat_tracker.percentage_home_wins).to eq(0.44)
+      end
+    end
+
+    describe "#percentage_visitor_wins" do 
+      it "can calculate percentage of home wins" do 
+        expect(@stat_tracker.percentage_visitor_wins).to be_a(Float)
+        expect(@stat_tracker.percentage_visitor_wins).to eq(0.36)
+      end
+    end
+
+    describe "#percentage_of_ties" do 
+      it "can calculate percentage of ties" do 
+        expect(@stat_tracker.percentage_ties).to be_a(Float)
+        expect(@stat_tracker.percentage_ties).to eq(0.41)
+      end
+    end
+  
   end
 
   # League Statistics Tests
@@ -184,8 +213,5 @@ RSpec.describe StatTracker do
     end
     
   end
-
-
-
 
 end
