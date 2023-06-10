@@ -127,4 +127,11 @@ RSpec.describe StatTracker do
       expect(@stat_tracker.count_of_teams).to eq(32)
     end
   end
+
+  describe "#highest_total_score" do
+    it "returns the highest total score" do
+      expect(@stat_tracker.highest_total_score).to be_a(Integer)
+      expect(@stat_tracker.highest_total_score).to eq(11)
+    end
+  end
 end
