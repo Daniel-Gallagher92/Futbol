@@ -124,7 +124,7 @@ RSpec.describe StatTracker do
   # Game Statistics Tests
 
   describe "Game Statistics" do
-     context "#highest_total_score" do
+    context "#highest_total_score" do
       it "returns the highest total score" do
         expect(@stat_tracker.highest_total_score).to be_a(Integer)
         expect(@stat_tracker.highest_total_score).to eq(11)
@@ -160,7 +160,7 @@ RSpec.describe StatTracker do
       end
     end
 
-    describe "#percentage_of_ties" do 
+    describe "#percentage_ties" do 
       it "can calculate percentage of ties" do 
         expect(@stat_tracker.percentage_ties).to be_a(Float)
         expect(@stat_tracker.percentage_ties).to eq(0.41)
@@ -173,7 +173,7 @@ RSpec.describe StatTracker do
 
   describe "League Statistics" do
     describe "#count_of_teams" do
-     it "returns the number of teams in the league" do
+    it "returns the number of teams in the league" do
         expect(@stat_tracker.count_of_teams).to be_a(Integer)
         expect(@stat_tracker.count_of_teams).to eq(32)
       end
