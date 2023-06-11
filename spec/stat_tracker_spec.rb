@@ -219,7 +219,14 @@ RSpec.describe StatTracker do
         expect(@stat_tracker.winningest_coach("20122013")).to be_a(String)
       end
     end
-    
+
+    describe "#worst_coach" do 
+      it "returns the name of the coach with least wins in season" do 
+
+        expect(@stat_tracker.worst_coach("20122013")).to be_a(String)
+        expect(@stat_tracker.worst_coach("20122013")).to eq("Martin Raymond")
+      end
+    end
   end
 
 end
