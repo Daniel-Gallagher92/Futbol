@@ -267,4 +267,11 @@ class StatTracker
       wins
     end.first
   end
+
+  def worst_coach(season) 
+    head_coaches = season_wins(season)
+    head_coaches.min_by do |coach, wins|
+      wins
+    end.first
+  end
 end
