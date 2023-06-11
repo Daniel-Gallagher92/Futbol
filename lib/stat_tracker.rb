@@ -230,4 +230,41 @@ class StatTracker
   
     fewest_tackles_team&.team_name
   end
+
+  def season_games(season) 
+    # Returns an array of game_teams for a given season
+    games_for_season = @games.find_all do |game| 
+      game.season == season
+    end
+
+    game_ids = games_for_season.map do |game| 
+      game.game_id
+    end
+
+    @game_teams.find_all do |game_team|
+      game_ids.include?(game_team.game_id)
+    end
+  end
+
+  def season_wins(season) 
+    # Returns a hash of head coaches and their win count for a given season
+    season_games = season_games(season)
+    head_coaches = season_games.group_by do |game| 
+      game.head_coach
+    end
+
+    head_coaches.each do |coach, games|
+      head_coaches[coach] = games.find_all do |game| 
+        game.result == "WIN"
+      end.count
+    end
+  end
+
+  def winningest_coach(season) 
+    #There is a tie between Claude Julien and Joel Quenneville
+    head_coaches = season_wins(season)
+    head_coaches.max_by do |coach, wins|
+      wins
+    end.first
+  end
 end
