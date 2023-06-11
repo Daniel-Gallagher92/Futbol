@@ -231,7 +231,7 @@ class StatTracker
     fewest_tackles_team&.team_name
   end
 
-  def season_games(season) 
+  def season_game_teams(season) 
     # Returns an array of game_teams for a given season
     games_for_season = @games.find_all do |game| 
       game.season == season
