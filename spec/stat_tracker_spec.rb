@@ -232,6 +232,14 @@ RSpec.describe StatTracker do
       end
     end
 
+    describe "highest_scoring_visitor" do
+      it "returns the highest scoring visitor" do
+        highest_scoring_visitor = @stat_tracker.highest_scoring_visitor
+        expect(highest_scoring_visitor).to be_a(String)
+        expect(highest_scoring_visitor).to eq("FC Dallas")
+      end  
+    end
+
     describe "#worst_offense" do   
       it "returns the name of the team w/the lowest average number of goals" do
         worst_offense = @stat_tracker.worst_offense
@@ -239,6 +247,8 @@ RSpec.describe StatTracker do
         expect(worst_offense).to eq("Utah Royals FC")
       end
     end
+
+    
   end
 
   # Season Statistics Tests
