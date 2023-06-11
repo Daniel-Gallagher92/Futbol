@@ -322,4 +322,58 @@ class StatTracker
   
     fewest_tackles_team&.team_name
   end
+
+  def season_game_teams(season) 
+    # Returns an array of game_teams for a given season
+    games_for_season = @games.find_all do |game| 
+      game.season == season
+    end
+
+    game_ids = games_for_season.map do |game| 
+      game.game_id
+    end
+
+    @game_teams.find_all do |game_team|
+      game_ids.include?(game_team.game_id)
+    end
+  end
+
+  def season_wins(season) 
+    # Returns a hash of head coaches and their win count for a given season
+    season_game_teams = season_game_teams(season)
+    head_coaches = season_game_teams.group_by do |game_team| 
+      game_team.head_coach
+    end
+
+    head_coaches.each do |coach, game_teams|
+      head_coaches[coach] = game_teams.find_all do |game_teams| 
+        game_team.result == "WIN"
+      end.count
+    end
+  end
+
+  def winningest_coach(season) 
+    #There is a tie between Claude Julien and Joel Quenneville
+    head_coaches = season_wins(season)
+    head_coaches.max_by do |coach, wins|
+      wins
+    end.first
+  end
+
+  def worst_coach(season) 
+    head_coaches = season_wins(season)
+    head_coaches.min_by do |coach, wins|
+      wins
+    end.first
+  end
+
+  def worst_coach_by_opinion
+    #Although he is not the worst coach, he is the worst person
+    "John Tortorella"
+  end
+  
+  def best_coach_by_opinion
+    #Not up for debate
+    "Jon Cooper"
+  end  
 end
