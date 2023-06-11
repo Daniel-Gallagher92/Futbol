@@ -153,7 +153,7 @@ class StatTracker
 
     # Finds the matching team from @teams by the team ID
     # Maybe turn this into a helper method?
-    best_offense_team = @teams.find do |team| 
+    best_offense_team = teams.find do |team| 
       team.team_id == best_offense_team_id
     end
     
@@ -184,7 +184,7 @@ class StatTracker
 
     # Finds the matching team from @teams by the team ID
     # Maybe turn this into a helper method?
-    worst_offense_team = @teams.find do |team| 
+    worst_offense_team = teams.find do |team| 
       team.team_id == worst_offense_team_id
     end
     
