@@ -241,7 +241,7 @@ RSpec.describe StatTracker do
     end
 
     describe "lowest_scoring_visitor" do
-      xit "returns the lowest scoring visitor" do
+      it "returns the lowest scoring visitor" do
         lowest_scoring_visitor = @stat_tracker.lowest_scoring_visitor
         expect(lowest_scoring_visitor).to be_a(String)
         expect(lowest_scoring_visitor).to eq("San Jose Earthquakes")
