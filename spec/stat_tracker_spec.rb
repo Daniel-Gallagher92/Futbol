@@ -211,6 +211,14 @@ RSpec.describe StatTracker do
         expect(@stat_tracker.fewest_tackles("20142015")).to eq("Orlando City SC")
       end
     end
+
+    describe "#winningest_coach" do 
+      it "returns the name of the coach with most wins in season" do 
+
+        expect(@stat_tracker.winningest_coach("20122013")).to eq("Claude Julien")
+        expect(@stat_tracker.winningest_coach("20122013")).to be_a(String)
+      end
+    end
     
   end
 
