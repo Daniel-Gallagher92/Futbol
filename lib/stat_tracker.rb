@@ -249,8 +249,8 @@ class StatTracker
   def season_wins(season) 
     # Returns a hash of head coaches and their win count for a given season
     season_games = season_games(season)
-    head_coaches = season_games.group_by do |game| 
-      game.head_coach
+    head_coaches = season_game_teams.group_by do |game_team| 
+      game_team.head_coach
     end
 
     head_coaches.each do |coach, game_teams|
