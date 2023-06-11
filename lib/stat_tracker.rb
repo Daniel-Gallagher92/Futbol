@@ -122,6 +122,48 @@ class StatTracker
   
     percentage(ties, all_games_count).round(2)
   end
+
+  def count_of_games_by_season
+    games_by_season = Hash.new(0)
+  
+    games.map do |game|
+      season = game.season
+      games_by_season[season] += 1
+    end
+  
+    games_by_season
+  end
+
+  def average_goals_per_game
+    total_goals = games.sum { |game| game.away_goals.to_i + game.home_goals.to_i }
+    total_games = games.size
+  
+    return 0 if total_games.zero?
+  
+    average_goals = total_goals.to_f / total_games
+    average_goals.round(2)
+  end
+
+  def average_goals_per_season
+    goals_per_season = Hash.new(0)
+    games_per_season = Hash.new(0)
+  
+    games.each do |game|
+      season = game.season
+      goals = game.away_goals.to_i + game.home_goals.to_i
+      goals_per_season[season] += goals
+      games_per_season[season] += 1
+    end
+  
+    average_goals_per_season = {}
+    goals_per_season.each do |season, goals|
+      total_games = games_per_season[season]
+      average_goals = total_games.zero? ? 0 : (goals.to_f / total_games).round(2)
+      average_goals_per_season[season] = average_goals
+    end
+  
+    average_goals_per_season
+  end
   
   # League Statistics
 
