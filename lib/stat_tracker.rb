@@ -162,7 +162,7 @@ class StatTracker
       average_goals_per_season[season] = average_goals
     end
   
-    average_goals_per_season.round(2)
+    average_goals_per_season
   end
   
   # League Statistics
