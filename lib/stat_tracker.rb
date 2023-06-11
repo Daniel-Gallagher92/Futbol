@@ -202,6 +202,25 @@ class StatTracker
     best_offense_team.team_name
   end
 
+  def highest_scoring_visitor
+    goals_by_team = Hash.new { |h, k| h[k] = 0 } #key is away_teams value is away_goals
+    
+    @games.each do |game|
+      team_id = game.away_team_id
+      goals = game.away_goals
+
+      goals_by_team[team_id] += goals
+    end
+
+    team_id = goals_by_team.max_by do  |away_team, away_goal|
+      away_goal
+    end.first
+
+    @teams.find do |team|
+      team.team_id == team_id
+    end.team_name
+  end
+
   def worst_offense
     # Groups teams by team_id into a Hash
     team_hash = game_teams.group_by do |game_team|
