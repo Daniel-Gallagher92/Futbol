@@ -274,4 +274,14 @@ class StatTracker
       wins
     end.first
   end
+
+  def worst_coach_by_opinion
+    #Although he is not the worst coach, he is the worst person
+    "John Tortorella"
+  end
+  
+  def best_coach_by_opinion
+    #Not up for debate
+    "Jon Cooper"
+  end  
 end
