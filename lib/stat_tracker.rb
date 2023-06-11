@@ -194,23 +194,14 @@ class StatTracker
   # Season Statistics
   
   def most_accurate_team(season)
-    # Name of the Team with the best ratio of shots to goals for the season	
-
-    # returns a hash of all games grouped by Season ID 
     games_by_season = games.group_by{ |game| game.season }
 
-    # returns an array of game_ids for the given season as symbols
-    # [:20132014, :20142015, :20152016...]
     season_game_ids = games_by_season[season].map { |game| game.game_id.to_sym }
 
-    # returns an array of GameTeams from games of the particular season
     game_teams_per_season = game_teams.find_all do |game_team|
       season_game_ids.include?(game_team.game_id.to_sym)
     end
 
-    # returns a hash where:
-    # Key is a team_id
-    # value is an array of game_teams
     game_teams_per_season_by_team = game_teams_per_season.group_by { |game_team| game_team.team_id }
 
     game_teams_per_season_by_team.transform_values! do |game_teams|
@@ -219,7 +210,7 @@ class StatTracker
 
       percentage(total_goals, total_shots)
     end
-    require "pry"; binding.pry
+
     best_accuracy = game_teams_per_season_by_team.max_by {|team, accuracy| accuracy }
 
     best_accuracy_team = teams.find do |team| 
