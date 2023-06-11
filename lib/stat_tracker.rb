@@ -203,20 +203,23 @@ class StatTracker
   end
 
   def highest_scoring_visitor
-    goals_by_team = Hash.new { |h, k| h[k] = 0 } #key is away_teams value is away_goals
-    
-    @games.each do |game|
+    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
+    #first value will be goals, second value will be the number of away games
+    games.each do |game|
       team_id = game.away_team_id
       goals = game.away_goals
 
-      goals_by_team[team_id] += goals
+      goals_by_team[team_id][0] += goals
+      goals_by_team[team_id][1] += 1
     end
-
+    
     team_id = goals_by_team.max_by do  |away_team, away_goal|
-      away_goal
+      total_goals = away_goal[0]
+      away_games = away_goal[1]
+      percentage(total_goals, away_games)
     end.first
 
-    @teams.find do |team|
+    teams.find do |team|
       team.team_id == team_id
     end.team_name
   end
