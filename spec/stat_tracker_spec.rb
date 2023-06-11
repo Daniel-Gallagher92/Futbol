@@ -249,7 +249,7 @@ RSpec.describe StatTracker do
     end    
 
     describe "highest_scoring_home_team" do
-      xit "returns the highest scoring home team" do
+      it "returns the highest scoring home team" do
         highest_scoring_home_team = @stat_tracker.highest_scoring_home_team
         expect(highest_scoring_home_team).to be_a(String)
         expect(highest_scoring_home_team).to eq("Reign FC")
