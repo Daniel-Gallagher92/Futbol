@@ -220,6 +220,33 @@ class StatTracker
     best_accuracy_team.team_name
   end
 
+  def least_accurate_team(season)
+    games_by_season = games.group_by{ |game| game.season }
+
+    season_game_ids = games_by_season[season].map { |game| game.game_id.to_sym }
+
+    game_teams_per_season = game_teams.find_all do |game_team|
+      season_game_ids.include?(game_team.game_id.to_sym)
+    end
+
+    game_teams_per_season_by_team = game_teams_per_season.group_by { |game_team| game_team.team_id }
+
+    game_teams_per_season_by_team.transform_values! do |game_teams|
+      total_goals = game_teams.sum{ |game_team| game_team.goals }
+      total_shots = game_teams.sum{ |game_team| game_team.shots }
+
+      percentage(total_goals, total_shots)
+    end
+
+    worst_accuracy = game_teams_per_season_by_team.min_by {|team, accuracy| accuracy }
+
+    worst_accuracy_team = teams.find do |team| 
+      team.team_id == worst_accuracy[0]
+    end
+    
+    worst_accuracy_team.team_name
+  end
+
   def most_tackles(season)
     team_tackles = Hash.new { |hash, team_id| hash[team_id] = 0 }
   
