@@ -227,6 +227,22 @@ RSpec.describe StatTracker do
         expect(@stat_tracker.worst_coach("20122013")).to eq("Martin Raymond")
       end
     end
+
+    describe "#worst_coach_by_opinion" do 
+      it "returns the name of Daniel's least favorite NHL coach" do 
+    
+        expect(@stat_tracker.worst_coach_by_opinion).to be_a(String)
+        expect(@stat_tracker.worst_coach_by_opinion).to eq("John Tortorella")
+      end
+    end
+    
+    describe "#best_coach_by_opinion" do 
+      it "returns the name of Daniel's favorite NHL coach" do 
+    
+        expect(@stat_tracker.best_coach_by_opinion).to be_a(String)
+        expect(@stat_tracker.best_coach_by_opinion).to eq("Jon Cooper")
+      end
+    end
   end
 
 end
