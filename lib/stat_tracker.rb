@@ -268,6 +268,28 @@ class StatTracker
     end.team_name
   end
 
+  def lowest_scoring_home_team
+    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
+    #first value will be goals, second value will be the number of away games
+    games.each do |game|
+      team_id = game.home_team_id
+      goals = game.home_goals
+
+      goals_by_team[team_id][0] += goals
+      goals_by_team[team_id][1] += 1
+    end
+    
+    team_id = goals_by_team.min_by do  |home_team, home_goal|
+      total_goals = home_goal[0]
+      home_games = home_goal[1]
+      percentage(total_goals, home_games)
+    end.first
+
+    teams.find do |team|
+      team.team_id == team_id
+    end.team_name
+  end
+
   def worst_offense
     # Groups teams by team_id into a Hash
     team_hash = game_teams.group_by do |game_team|

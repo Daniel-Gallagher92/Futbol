@@ -257,7 +257,7 @@ RSpec.describe StatTracker do
     end  
 
     describe "lowest_scoring_home_team" do
-      xit "returns the lowest scoring visitor" do
+      it "returns the lowest scoring home team" do
         lowest_scoring_home_team = @stat_tracker.lowest_scoring_home_team
         expect(lowest_scoring_home_team).to be_a(String)
         expect(lowest_scoring_home_team).to eq("Utah Royals FC")
