@@ -121,6 +121,18 @@ RSpec.describe StatTracker do
     end
   end
 
+  describe "Helper Methods" do
+
+    describe "#team_name_from_id" do
+      it "returns a team name when given a team_id" do
+        expect(@stat_tracker.team_name_from_id("1")).to eq("Atlanta United")
+        expect(@stat_tracker.team_name_from_id("4")).to eq("Chicago Fire")
+        expect(@stat_tracker.team_name_from_id("0")).to eq(nil)
+      end
+    end
+
+  end
+
   # Game Statistics Tests
 
   describe "Game Statistics" do
