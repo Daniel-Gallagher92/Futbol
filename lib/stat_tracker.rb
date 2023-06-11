@@ -105,14 +105,14 @@ class StatTracker
       game.hoa == "home" && game.result == "WIN"
     end.count 
     
-    percentage(hometeam_wins, all_games_count)
+    percentage(hometeam_wins, all_games_count).round(2)
   end
 
   def percentage_visitor_wins
     visitor_wins = game_teams.find_all do |game|
       game.hoa == "away" && game.result == "WIN"
     end.count 
-    percentage(visitor_wins, all_games_count)
+    percentage(visitor_wins, all_games_count).round(2)
   end
 
   def percentage_ties
@@ -120,7 +120,7 @@ class StatTracker
       game.result == "TIE"
     end.count 
   
-    percentage(ties, all_games_count)
+    percentage(ties, all_games_count).round(2)
   end
   
   # League Statistics
