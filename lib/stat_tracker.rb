@@ -192,6 +192,10 @@ class StatTracker
   end
 
   # Season Statistics
+
+  def team_name_from_id(team_id) # Helper Method
+    teams.find { |team| team.team_id == team_id }&.team_name
+  end
   
   def most_accurate_team(season)
     games_by_season = games.group_by{ |game| game.season }
@@ -213,11 +217,7 @@ class StatTracker
 
     best_accuracy = game_teams_per_season_by_team.max_by {|team, accuracy| accuracy }
 
-    best_accuracy_team = teams.find do |team| 
-      team.team_id == best_accuracy[0]
-    end
-    
-    best_accuracy_team.team_name
+    team_name_from_id(best_accuracy.first)
   end
 
   def least_accurate_team(season)
@@ -240,11 +240,7 @@ class StatTracker
 
     worst_accuracy = game_teams_per_season_by_team.min_by {|team, accuracy| accuracy }
 
-    worst_accuracy_team = teams.find do |team| 
-      team.team_id == worst_accuracy[0]
-    end
-    
-    worst_accuracy_team.team_name
+    team_name_from_id(worst_accuracy[0])
   end
 
   def most_tackles(season)
