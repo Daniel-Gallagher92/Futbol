@@ -253,9 +253,9 @@ class StatTracker
       game.head_coach
     end
 
-    head_coaches.each do |coach, games|
-      head_coaches[coach] = games.find_all do |game| 
-        game.result == "WIN"
+    head_coaches.each do |coach, game_teams|
+      head_coaches[coach] = game_teams.find_all do |game_teams| 
+        game_team.result == "WIN"
       end.count
     end
   end
