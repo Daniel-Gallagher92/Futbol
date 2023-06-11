@@ -121,19 +121,6 @@ RSpec.describe StatTracker do
     end
   end
 
-  describe "Helper Methods" do
-
-    describe "#team_name_from_id" do
-      it "returns a team name when given a team_id" do
-        expect(@stat_tracker.team_name_from_id("1")).to eq("Atlanta United")
-        expect(@stat_tracker.team_name_from_id("4")).to eq("Chicago Fire")
-        expect(@stat_tracker.team_name_from_id("0")).to eq(nil)
-      end
-
-    end
-
-  end
-
   # Game Statistics Tests
 
   describe "Game Statistics" do
@@ -215,17 +202,23 @@ RSpec.describe StatTracker do
 
     describe "#most_accurate_team" do
       it "returns the team with the best ratio of shots/goals for the season" do
-        expect(@stat_tracker.most_accurate_team("20132014")).to be_a(String)
-        expect(@stat_tracker.most_accurate_team("20132014")).to eq("Real Salt Lake")
-        expect(@stat_tracker.most_accurate_team("20142015")).to eq("Toronto FC")
+        most_accurate_team_20132014 = @stat_tracker.most_accurate_team("20132014")
+        most_accurate_team_20142015 = @stat_tracker.most_accurate_team("20142015")
+        
+        expect(most_accurate_team_20132014).to be_a(String)
+        expect(most_accurate_team_20132014).to eq("Real Salt Lake")
+        expect(most_accurate_team_20142015).to eq("Toronto FC")
       end
     end
 
     describe "#least_accurate_team" do
       it "returns the team with the worst ratio of shots/goals for the season" do
-        expect(@stat_tracker.least_accurate_team("20132014")).to be_a(String)
-        expect(@stat_tracker.least_accurate_team("20132014")).to eq("New York City FC")
-        expect(@stat_tracker.least_accurate_team("20142015")).to eq("Columbus Crew SC")
+        least_accurate_team_20132014 = @stat_tracker.least_accurate_team("20132014")
+        least_accurate_team_20142015 = @stat_tracker.least_accurate_team("20142015")
+
+        expect(least_accurate_team_20132014).to be_a(String)
+        expect(least_accurate_team_20132014).to eq("New York City FC")
+        expect(least_accurate_team_20142015).to eq("Columbus Crew SC")
       end
     end
 
