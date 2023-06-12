@@ -138,8 +138,10 @@ RSpec.describe StatTracker do
   describe "Game Statistics" do
     context "#highest_total_score" do
       it "returns the highest total score" do
-        expect(@stat_tracker.highest_total_score).to be_a(Integer)
-        expect(@stat_tracker.highest_total_score).to eq(11)
+        highest_total_score = @stat_tracker.highest_total_score
+
+        expect(highest_total_score).to be_a(Integer)
+        expect(highest_total_score).to eq(11)
       end
     end
 
