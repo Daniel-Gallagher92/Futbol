@@ -232,6 +232,38 @@ RSpec.describe StatTracker do
       end
     end
 
+    describe "highest_scoring_visitor" do
+      it "returns the highest scoring visitor" do
+        highest_scoring_visitor = @stat_tracker.highest_scoring_visitor
+        expect(highest_scoring_visitor).to be_a(String)
+        expect(highest_scoring_visitor).to eq("FC Dallas")
+      end  
+    end
+
+    describe "lowest_scoring_visitor" do
+      it "returns the lowest scoring visitor" do
+        lowest_scoring_visitor = @stat_tracker.lowest_scoring_visitor
+        expect(lowest_scoring_visitor).to be_a(String)
+        expect(lowest_scoring_visitor).to eq("San Jose Earthquakes")
+      end
+    end    
+
+    describe "highest_scoring_home_team" do
+      it "returns the highest scoring home team" do
+        highest_scoring_home_team = @stat_tracker.highest_scoring_home_team
+        expect(highest_scoring_home_team).to be_a(String)
+        expect(highest_scoring_home_team).to eq("Reign FC")
+      end
+    end  
+
+    describe "lowest_scoring_home_team" do
+      it "returns the lowest scoring home team" do
+        lowest_scoring_home_team = @stat_tracker.lowest_scoring_home_team
+        expect(lowest_scoring_home_team).to be_a(String)
+        expect(lowest_scoring_home_team).to eq("Utah Royals FC")
+      end
+    end    
+
     describe "#worst_offense" do   
       it "returns the name of the team w/the lowest average number of goals" do
         worst_offense = @stat_tracker.worst_offense
@@ -239,6 +271,8 @@ RSpec.describe StatTracker do
         expect(worst_offense).to eq("Utah Royals FC")
       end
     end
+
+    
   end
 
   # Season Statistics Tests
