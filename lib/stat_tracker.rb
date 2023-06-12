@@ -202,6 +202,29 @@ class StatTracker
     best_offense_team.team_name
   end
 
+  def worst_offense
+    # Groups teams by team_id into a Hash
+    team_hash = game_teams.group_by do |game_team|
+      game_team.team_id
+    end
+
+    # Changes Hash values into the team's average score
+    team_hash.transform_values! do |game_teams|
+      total_team_goals = game_teams.sum{ |game_team| game_team.goals }
+      total_games = game_teams.count
+      
+      avg_goals_per_game = percentage(total_team_goals, total_games)
+      avg_goals_per_game
+    end
+
+    # Returns the K/V pair of the team with the highest avg goals per game
+    worst_offense_team = team_hash.min_by do |team_id, avg_goals_per_game|
+      avg_goals_per_game
+    end
+
+    team_name_from_id(worst_offense_team[0])
+  end
+
   def highest_scoring_visitor
     goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
     #first value will be goals, second value will be the number of away games
@@ -288,29 +311,6 @@ class StatTracker
     teams.find do |team|
       team.team_id == team_id
     end.team_name
-  end
-
-  def worst_offense
-    # Groups teams by team_id into a Hash
-    team_hash = game_teams.group_by do |game_team|
-      game_team.team_id
-    end
-
-    # Changes Hash values into the team's average score
-    team_hash.transform_values! do |game_teams|
-      total_team_goals = game_teams.sum{ |game_team| game_team.goals }
-      total_games = game_teams.count
-      
-      avg_goals_per_game = percentage(total_team_goals, total_games)
-      avg_goals_per_game
-    end
-
-    # Returns the K/V pair of the team with the highest avg goals per game
-    worst_offense_team = team_hash.min_by do |team_id, avg_goals_per_game|
-      avg_goals_per_game
-    end
-
-    team_name_from_id(worst_offense_team[0])
   end
 
   # Season Statistics
