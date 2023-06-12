@@ -363,9 +363,8 @@ class StatTracker
     end
   
     most_tackles_team_id = team_tackles.max_by { |_team_id, tackles| tackles }&.first
-    most_tackles_team = teams.find { |team| team.team_id == most_tackles_team_id }
-  
-    most_tackles_team&.team_name
+
+    team_name_from_id(most_tackles_team_id)
   end
   
   def fewest_tackles(season)
@@ -382,9 +381,8 @@ class StatTracker
     end
   
     fewest_tackles_team_id = team_tackles.min_by { |_team_id, tackles| tackles }&.first
-    fewest_tackles_team = teams.find { |team| team.team_id == fewest_tackles_team_id }
-  
-    fewest_tackles_team&.team_name
+
+    team_name_from_id(fewest_tackles_team_id)
   end
 
   def season_game_teams(season) 
