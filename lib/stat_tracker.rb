@@ -310,15 +310,7 @@ class StatTracker
       avg_goals_per_game
     end
 
-    worst_offense_team_id = worst_offense_team[0]
-
-    # Finds the matching team from @teams by the team ID
-    # Maybe turn this into a helper method?
-    worst_offense_team = teams.find do |team| 
-      team.team_id == worst_offense_team_id
-    end
-    
-    worst_offense_team.team_name
+    team_name_from_id(worst_offense_team[0])
   end
 
   # Season Statistics
