@@ -156,9 +156,11 @@ RSpec.describe StatTracker do
 
 
     describe "#all_games_count" do 
-      it "can count all of the games" do 
-        expect(@stat_tracker.all_games_count).to be_a(Integer)
-        expect(@stat_tracker.all_games_count).to eq(7441)
+      it "can count all of the games" do
+        all_games_count = @stat_tracker.all_games_count
+
+        expect(all_games_count).to be_a(Integer)
+        expect(all_games_count).to eq(7441)
       end
     end
 
