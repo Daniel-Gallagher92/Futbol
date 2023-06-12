@@ -138,51 +138,65 @@ RSpec.describe StatTracker do
   describe "Game Statistics" do
     context "#highest_total_score" do
       it "returns the highest total score" do
-        expect(@stat_tracker.highest_total_score).to be_a(Integer)
-        expect(@stat_tracker.highest_total_score).to eq(11)
+        highest_total_score = @stat_tracker.highest_total_score
+
+        expect(highest_total_score).to be_a(Integer)
+        expect(highest_total_score).to eq(11)
       end
     end
 
     context "#lowest_total_score" do
       it "returns the lowest total score" do
-        expect(@stat_tracker.lowest_total_score).to be_a(Integer)
-        expect(@stat_tracker.lowest_total_score).to eq(0)
+        lowest_total_score = @stat_tracker.lowest_total_score
+
+        expect(lowest_total_score).to be_a(Integer)
+        expect(lowest_total_score).to eq(0)
       end
     end
 
 
     describe "#all_games_count" do 
-      it "can count all of the games" do 
-        expect(@stat_tracker.all_games_count).to be_a(Integer)
-        expect(@stat_tracker.all_games_count).to eq(7441)
+      it "can count all of the games" do
+        all_games_count = @stat_tracker.all_games_count
+
+        expect(all_games_count).to be_a(Integer)
+        expect(all_games_count).to eq(7441)
       end
     end
 
     describe "#percentage_home_wins" do 
-      it "can calculate percentage of home wins" do 
-        expect(@stat_tracker.percentage_home_wins).to be_a(Float)
-        expect(@stat_tracker.percentage_home_wins).to eq(0.44)
+      it "can calculate percentage of home wins" do
+        percentage_home_wins = @stat_tracker.percentage_home_wins
+
+        expect(percentage_home_wins).to be_a(Float)
+        expect(percentage_home_wins).to eq(0.44)
       end
     end
 
     describe "#percentage_visitor_wins" do 
       it "can calculate percentage of home wins" do 
-        expect(@stat_tracker.percentage_visitor_wins).to be_a(Float)
-        expect(@stat_tracker.percentage_visitor_wins).to eq(0.36)
+        percentage_visitor_wins = @stat_tracker.percentage_visitor_wins
+
+        expect(percentage_visitor_wins).to be_a(Float)
+        expect(percentage_visitor_wins).to eq(0.36)
       end
     end
 
     describe "#percentage_ties" do 
       it "can calculate percentage of ties" do 
-        expect(@stat_tracker.percentage_ties).to be_a(Float)
-        expect(@stat_tracker.percentage_ties).to eq(0.41)
+        percentage_ties = @stat_tracker.percentage_ties
+
+        expect(percentage_ties).to be_a(Float)
+        expect(percentage_ties).to eq(0.41)
       end
     end
 
     context "#count_of_games_by_season" do
       it "returns the number of games in a season" do
-        expect(@stat_tracker.count_of_games_by_season).to be_a(Hash)
-        expect(@stat_tracker.count_of_games_by_season).to eq({
+        count_of_games_by_season = @stat_tracker.count_of_games_by_season
+
+        expect(count_of_games_by_season).to be_a(Hash)
+        expect(count_of_games_by_season).to eq({
           "20122013"=>806,
           "20132014"=>1323,
           "20142015"=>1319,
@@ -195,13 +209,17 @@ RSpec.describe StatTracker do
 
     context "#average goals game/season" do 
       it "returns the average goals per game" do
-        expect(@stat_tracker.average_goals_per_game).to be_a(Float)
-        expect(@stat_tracker.average_goals_per_game).to eq(4.22)
+        average_goals_per_game = @stat_tracker.average_goals_per_game
+
+        expect(average_goals_per_game).to be_a(Float)
+        expect(average_goals_per_game).to eq(4.22)
       end
 
       it "returns average goals in a game for a season" do
-        expect(@stat_tracker.average_goals_per_season).to be_a(Hash)
-        expect(@stat_tracker.average_goals_per_season).to eq({
+        average_goals_per_season = @stat_tracker.average_goals_per_season
+
+        expect(average_goals_per_season).to be_a(Hash)
+        expect(average_goals_per_season).to eq({
           "20122013" => 4.12,
           "20132014" => 4.19,
           "20142015" => 4.14,
@@ -232,7 +250,7 @@ RSpec.describe StatTracker do
       end
     end
 
-    describe "highest_scoring_visitor" do
+    describe "#highest_scoring_visitor" do
       it "returns the highest scoring visitor" do
         highest_scoring_visitor = @stat_tracker.highest_scoring_visitor
         expect(highest_scoring_visitor).to be_a(String)
@@ -240,7 +258,7 @@ RSpec.describe StatTracker do
       end  
     end
 
-    describe "lowest_scoring_visitor" do
+    describe "#lowest_scoring_visitor" do
       it "returns the lowest scoring visitor" do
         lowest_scoring_visitor = @stat_tracker.lowest_scoring_visitor
         expect(lowest_scoring_visitor).to be_a(String)
@@ -248,7 +266,7 @@ RSpec.describe StatTracker do
       end
     end    
 
-    describe "highest_scoring_home_team" do
+    describe "#highest_scoring_home_team" do
       it "returns the highest scoring home team" do
         highest_scoring_home_team = @stat_tracker.highest_scoring_home_team
         expect(highest_scoring_home_team).to be_a(String)
@@ -256,7 +274,7 @@ RSpec.describe StatTracker do
       end
     end  
 
-    describe "lowest_scoring_home_team" do
+    describe "#lowest_scoring_home_team" do
       it "returns the lowest scoring home team" do
         lowest_scoring_home_team = @stat_tracker.lowest_scoring_home_team
         expect(lowest_scoring_home_team).to be_a(String)
@@ -303,35 +321,40 @@ RSpec.describe StatTracker do
 
     describe "#tackles" do
       it 'returns the team with the most tackles in the given season' do
-        expect(@stat_tracker.most_tackles("20122013")).to be_a(String)
-        expect(@stat_tracker.most_tackles("20122013")).to eq("FC Cincinnati")
+        most_tackles = @stat_tracker.most_tackles("20122013")
+
+        expect(most_tackles).to be_a(String)
+        expect(most_tackles).to eq("FC Cincinnati")
       end
 
       it 'returns the team with the fewest tackles in the given season' do
-        expect(@stat_tracker.fewest_tackles("20142015")).to be_a(String)
-        expect(@stat_tracker.fewest_tackles("20142015")).to eq("Orlando City SC")
+        fewest_tackles = @stat_tracker.fewest_tackles("20142015")
+
+        expect(fewest_tackles).to be_a(String)
+        expect(fewest_tackles).to eq("Orlando City SC")
       end
     end
 
     describe "#winningest_coach" do 
       it "returns the name of the coach with most wins in season" do 
+        winningest_coach = @stat_tracker.winningest_coach("20122013")
 
-        expect(@stat_tracker.winningest_coach("20122013")).to eq("Claude Julien")
-        expect(@stat_tracker.winningest_coach("20122013")).to be_a(String)
+        expect(winningest_coach).to eq("Claude Julien")
+        expect(winningest_coach).to be_a(String)
       end
     end
 
     describe "#worst_coach" do 
       it "returns the name of the coach with least wins in season" do 
+        worst_coach = @stat_tracker.worst_coach("20122013")
 
-        expect(@stat_tracker.worst_coach("20122013")).to be_a(String)
-        expect(@stat_tracker.worst_coach("20122013")).to eq("Martin Raymond")
+        expect(worst_coach).to be_a(String)
+        expect(worst_coach).to eq("Martin Raymond")
       end
     end
 
     describe "#worst_coach_by_opinion" do 
       it "returns the name of Daniel's least favorite NHL coach" do 
-    
         expect(@stat_tracker.worst_coach_by_opinion).to be_a(String)
         expect(@stat_tracker.worst_coach_by_opinion).to eq("John Tortorella")
       end
@@ -339,7 +362,6 @@ RSpec.describe StatTracker do
     
     describe "#best_coach_by_opinion" do 
       it "returns the name of Daniel's favorite NHL coach" do 
-    
         expect(@stat_tracker.best_coach_by_opinion).to be_a(String)
         expect(@stat_tracker.best_coach_by_opinion).to eq("Jon Cooper")
       end
