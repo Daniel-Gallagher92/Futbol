@@ -238,7 +238,7 @@ RSpec.describe StatTracker do
       end
     end
 
-    describe "highest_scoring_visitor" do
+    describe "#highest_scoring_visitor" do
       it "returns the highest scoring visitor" do
         highest_scoring_visitor = @stat_tracker.highest_scoring_visitor
         expect(highest_scoring_visitor).to be_a(String)
@@ -246,7 +246,7 @@ RSpec.describe StatTracker do
       end  
     end
 
-    describe "lowest_scoring_visitor" do
+    describe "#lowest_scoring_visitor" do
       it "returns the lowest scoring visitor" do
         lowest_scoring_visitor = @stat_tracker.lowest_scoring_visitor
         expect(lowest_scoring_visitor).to be_a(String)
@@ -254,7 +254,7 @@ RSpec.describe StatTracker do
       end
     end    
 
-    describe "highest_scoring_home_team" do
+    describe "#highest_scoring_home_team" do
       it "returns the highest scoring home team" do
         highest_scoring_home_team = @stat_tracker.highest_scoring_home_team
         expect(highest_scoring_home_team).to be_a(String)
@@ -262,7 +262,7 @@ RSpec.describe StatTracker do
       end
     end  
 
-    describe "lowest_scoring_home_team" do
+    describe "#lowest_scoring_home_team" do
       it "returns the lowest scoring home team" do
         lowest_scoring_home_team = @stat_tracker.lowest_scoring_home_team
         expect(lowest_scoring_home_team).to be_a(String)
