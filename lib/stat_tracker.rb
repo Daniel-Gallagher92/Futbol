@@ -191,103 +191,7 @@ class StatTracker
       avg_goals_per_game
     end
 
-    best_offense_team_id = best_offense_team[0]
-
-    # Finds the matching team from @teams by the team ID
-    # Maybe turn this into a helper method?
-    best_offense_team = teams.find do |team| 
-      team.team_id == best_offense_team_id
-    end
-    
-    best_offense_team.team_name
-  end
-
-  def highest_scoring_visitor
-    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
-    #first value will be goals, second value will be the number of away games
-    games.each do |game|
-      team_id = game.away_team_id
-      goals = game.away_goals
-
-      goals_by_team[team_id][0] += goals
-      goals_by_team[team_id][1] += 1
-    end
-    
-    team_id = goals_by_team.max_by do  |away_team, away_goal|
-      total_goals = away_goal[0]
-      away_games = away_goal[1]
-      percentage(total_goals, away_games)
-    end.first
-
-    teams.find do |team|
-      team.team_id == team_id
-    end.team_name
-  end
-
-  def lowest_scoring_visitor
-    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
-    #first value will be goals, second value will be the number of away games
-    games.each do |game|
-      team_id = game.away_team_id
-      goals = game.away_goals
-
-      goals_by_team[team_id][0] += goals
-      goals_by_team[team_id][1] += 1
-    end
-    
-    team_id = goals_by_team.min_by do  |away_team, away_goal|
-      total_goals = away_goal[0]
-      away_games = away_goal[1]
-      percentage(total_goals, away_games)
-    end.first
-
-    teams.find do |team|
-      team.team_id == team_id
-    end.team_name
-  end
-  
-  def highest_scoring_home_team
-    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
-    #first value will be goals, second value will be the number of away games
-    games.each do |game|
-      team_id = game.home_team_id
-      goals = game.home_goals
-
-      goals_by_team[team_id][0] += goals
-      goals_by_team[team_id][1] += 1
-    end
-    
-    team_id = goals_by_team.max_by do  |home_team, home_goal|
-      total_goals = home_goal[0]
-      home_games = home_goal[1]
-      percentage(total_goals, home_games)
-    end.first
-
-    teams.find do |team|
-      team.team_id == team_id
-    end.team_name
-  end
-
-  def lowest_scoring_home_team
-    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
-    #first value will be goals, second value will be the number of away games
-    games.each do |game|
-      team_id = game.home_team_id
-      goals = game.home_goals
-
-      goals_by_team[team_id][0] += goals
-      goals_by_team[team_id][1] += 1
-    end
-    
-    team_id = goals_by_team.min_by do  |home_team, home_goal|
-      total_goals = home_goal[0]
-      home_games = home_goal[1]
-      percentage(total_goals, home_games)
-    end.first
-
-    teams.find do |team|
-      team.team_id == team_id
-    end.team_name
+    team_name_from_id(best_offense_team[0])
   end
 
   def worst_offense
@@ -310,15 +214,87 @@ class StatTracker
       avg_goals_per_game
     end
 
-    worst_offense_team_id = worst_offense_team[0]
+    team_name_from_id(worst_offense_team[0])
+  end
 
-    # Finds the matching team from @teams by the team ID
-    # Maybe turn this into a helper method?
-    worst_offense_team = teams.find do |team| 
-      team.team_id == worst_offense_team_id
+  def highest_scoring_visitor
+    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
+    #first value will be goals, second value will be the number of away games
+    games.each do |game|
+      team_id = game.away_team_id
+      goals = game.away_goals
+
+      goals_by_team[team_id][0] += goals
+      goals_by_team[team_id][1] += 1
     end
     
-    worst_offense_team.team_name
+    team_id = goals_by_team.max_by do  |away_team, away_goal|
+      total_goals = away_goal[0]
+      away_games = away_goal[1]
+      percentage(total_goals, away_games)
+    end.first
+
+    team_name_from_id(team_id)
+  end
+
+  def lowest_scoring_visitor
+    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
+    #first value will be goals, second value will be the number of away games
+    games.each do |game|
+      team_id = game.away_team_id
+      goals = game.away_goals
+
+      goals_by_team[team_id][0] += goals
+      goals_by_team[team_id][1] += 1
+    end
+    
+    team_id = goals_by_team.min_by do  |away_team, away_goal|
+      total_goals = away_goal[0]
+      away_games = away_goal[1]
+      percentage(total_goals, away_games)
+    end.first
+
+    team_name_from_id(team_id)
+  end
+  
+  def highest_scoring_home_team
+    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
+    #first value will be goals, second value will be the number of away games
+    games.each do |game|
+      team_id = game.home_team_id
+      goals = game.home_goals
+
+      goals_by_team[team_id][0] += goals
+      goals_by_team[team_id][1] += 1
+    end
+    
+    team_id = goals_by_team.max_by do  |home_team, home_goal|
+      total_goals = home_goal[0]
+      home_games = home_goal[1]
+      percentage(total_goals, home_games)
+    end.first
+
+    team_name_from_id(team_id)
+  end
+
+  def lowest_scoring_home_team
+    goals_by_team = Hash.new { |h, k| h[k] = [0, 0] } #key is away_teams value is away_goals
+    #first value will be goals, second value will be the number of away games
+    games.each do |game|
+      team_id = game.home_team_id
+      goals = game.home_goals
+
+      goals_by_team[team_id][0] += goals
+      goals_by_team[team_id][1] += 1
+    end
+    
+    team_id = goals_by_team.min_by do  |home_team, home_goal|
+      total_goals = home_goal[0]
+      home_games = home_goal[1]
+      percentage(total_goals, home_games)
+    end.first
+
+    team_name_from_id(team_id)
   end
 
   # Season Statistics
@@ -387,9 +363,8 @@ class StatTracker
     end
   
     most_tackles_team_id = team_tackles.max_by { |_team_id, tackles| tackles }&.first
-    most_tackles_team = teams.find { |team| team.team_id == most_tackles_team_id }
-  
-    most_tackles_team&.team_name
+
+    team_name_from_id(most_tackles_team_id)
   end
   
   def fewest_tackles(season)
@@ -406,9 +381,8 @@ class StatTracker
     end
   
     fewest_tackles_team_id = team_tackles.min_by { |_team_id, tackles| tackles }&.first
-    fewest_tackles_team = teams.find { |team| team.team_id == fewest_tackles_team_id }
-  
-    fewest_tackles_team&.team_name
+
+    team_name_from_id(fewest_tackles_team_id)
   end
 
   def season_game_teams(season) 
