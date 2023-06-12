@@ -325,23 +325,24 @@ RSpec.describe StatTracker do
 
     describe "#winningest_coach" do 
       it "returns the name of the coach with most wins in season" do 
+        winningest_coach = @stat_tracker.winningest_coach("20122013")
 
-        expect(@stat_tracker.winningest_coach("20122013")).to eq("Claude Julien")
-        expect(@stat_tracker.winningest_coach("20122013")).to be_a(String)
+        expect(winningest_coach).to eq("Claude Julien")
+        expect(winningest_coach).to be_a(String)
       end
     end
 
     describe "#worst_coach" do 
       it "returns the name of the coach with least wins in season" do 
+        worst_coach = @stat_tracker.worst_coach("20122013")
 
-        expect(@stat_tracker.worst_coach("20122013")).to be_a(String)
-        expect(@stat_tracker.worst_coach("20122013")).to eq("Martin Raymond")
+        expect(worst_coach).to be_a(String)
+        expect(worst_coach).to eq("Martin Raymond")
       end
     end
 
     describe "#worst_coach_by_opinion" do 
       it "returns the name of Daniel's least favorite NHL coach" do 
-    
         expect(@stat_tracker.worst_coach_by_opinion).to be_a(String)
         expect(@stat_tracker.worst_coach_by_opinion).to eq("John Tortorella")
       end
@@ -349,7 +350,6 @@ RSpec.describe StatTracker do
     
     describe "#best_coach_by_opinion" do 
       it "returns the name of Daniel's favorite NHL coach" do 
-    
         expect(@stat_tracker.best_coach_by_opinion).to be_a(String)
         expect(@stat_tracker.best_coach_by_opinion).to eq("Jon Cooper")
       end
