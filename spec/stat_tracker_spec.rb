@@ -303,13 +303,17 @@ RSpec.describe StatTracker do
 
     describe "#tackles" do
       it 'returns the team with the most tackles in the given season' do
-        expect(@stat_tracker.most_tackles("20122013")).to be_a(String)
-        expect(@stat_tracker.most_tackles("20122013")).to eq("FC Cincinnati")
+        most_tackles = @stat_tracker.most_tackles("20122013")
+
+        expect(most_tackles).to be_a(String)
+        expect(most_tackles).to eq("FC Cincinnati")
       end
 
       it 'returns the team with the fewest tackles in the given season' do
-        expect(@stat_tracker.fewest_tackles("20142015")).to be_a(String)
-        expect(@stat_tracker.fewest_tackles("20142015")).to eq("Orlando City SC")
+        fewest_tackles = @stat_tracker.fewest_tackles("20142015")
+
+        expect(fewest_tackles).to be_a(String)
+        expect(fewest_tackles).to eq("Orlando City SC")
       end
     end
 
