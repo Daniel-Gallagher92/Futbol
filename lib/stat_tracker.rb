@@ -191,15 +191,7 @@ class StatTracker
       avg_goals_per_game
     end
 
-    best_offense_team_id = best_offense_team[0]
-
-    # Finds the matching team from @teams by the team ID
-    # Maybe turn this into a helper method?
-    best_offense_team = teams.find do |team| 
-      team.team_id == best_offense_team_id
-    end
-    
-    best_offense_team.team_name
+    team_name_from_id(best_offense_team[0])
   end
 
   def worst_offense
@@ -242,9 +234,7 @@ class StatTracker
       percentage(total_goals, away_games)
     end.first
 
-    teams.find do |team|
-      team.team_id == team_id
-    end.team_name
+    team_name_from_id(team_id)
   end
 
   def lowest_scoring_visitor
@@ -264,9 +254,7 @@ class StatTracker
       percentage(total_goals, away_games)
     end.first
 
-    teams.find do |team|
-      team.team_id == team_id
-    end.team_name
+    team_name_from_id(team_id)
   end
   
   def highest_scoring_home_team
@@ -286,9 +274,7 @@ class StatTracker
       percentage(total_goals, home_games)
     end.first
 
-    teams.find do |team|
-      team.team_id == team_id
-    end.team_name
+    team_name_from_id(team_id)
   end
 
   def lowest_scoring_home_team
@@ -308,9 +294,7 @@ class StatTracker
       percentage(total_goals, home_games)
     end.first
 
-    teams.find do |team|
-      team.team_id == team_id
-    end.team_name
+    team_name_from_id(team_id)
   end
 
   # Season Statistics
