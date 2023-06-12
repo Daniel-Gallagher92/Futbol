@@ -165,30 +165,38 @@ RSpec.describe StatTracker do
     end
 
     describe "#percentage_home_wins" do 
-      it "can calculate percentage of home wins" do 
-        expect(@stat_tracker.percentage_home_wins).to be_a(Float)
-        expect(@stat_tracker.percentage_home_wins).to eq(0.44)
+      it "can calculate percentage of home wins" do
+        percentage_home_wins = @stat_tracker.percentage_home_wins
+
+        expect(percentage_home_wins).to be_a(Float)
+        expect(percentage_home_wins).to eq(0.44)
       end
     end
 
     describe "#percentage_visitor_wins" do 
       it "can calculate percentage of home wins" do 
-        expect(@stat_tracker.percentage_visitor_wins).to be_a(Float)
-        expect(@stat_tracker.percentage_visitor_wins).to eq(0.36)
+        percentage_visitor_wins = @stat_tracker.percentage_visitor_wins
+
+        expect(percentage_visitor_wins).to be_a(Float)
+        expect(percentage_visitor_wins).to eq(0.36)
       end
     end
 
     describe "#percentage_ties" do 
       it "can calculate percentage of ties" do 
-        expect(@stat_tracker.percentage_ties).to be_a(Float)
-        expect(@stat_tracker.percentage_ties).to eq(0.41)
+        percentage_ties = @stat_tracker.percentage_ties
+
+        expect(percentage_ties).to be_a(Float)
+        expect(percentage_ties).to eq(0.41)
       end
     end
 
     context "#count_of_games_by_season" do
       it "returns the number of games in a season" do
-        expect(@stat_tracker.count_of_games_by_season).to be_a(Hash)
-        expect(@stat_tracker.count_of_games_by_season).to eq({
+        count_of_games_by_season = @stat_tracker.count_of_games_by_season
+
+        expect(count_of_games_by_season).to be_a(Hash)
+        expect(count_of_games_by_season).to eq({
           "20122013"=>806,
           "20132014"=>1323,
           "20142015"=>1319,
@@ -201,13 +209,17 @@ RSpec.describe StatTracker do
 
     context "#average goals game/season" do 
       it "returns the average goals per game" do
-        expect(@stat_tracker.average_goals_per_game).to be_a(Float)
-        expect(@stat_tracker.average_goals_per_game).to eq(4.22)
+        average_goals_per_game = @stat_tracker.average_goals_per_game
+
+        expect(average_goals_per_game).to be_a(Float)
+        expect(average_goals_per_game).to eq(4.22)
       end
 
       it "returns average goals in a game for a season" do
-        expect(@stat_tracker.average_goals_per_season).to be_a(Hash)
-        expect(@stat_tracker.average_goals_per_season).to eq({
+        average_goals_per_season = @stat_tracker.average_goals_per_season
+
+        expect(average_goals_per_season).to be_a(Hash)
+        expect(average_goals_per_season).to eq({
           "20122013" => 4.12,
           "20132014" => 4.19,
           "20142015" => 4.14,
