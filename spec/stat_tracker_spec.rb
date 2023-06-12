@@ -147,8 +147,10 @@ RSpec.describe StatTracker do
 
     context "#lowest_total_score" do
       it "returns the lowest total score" do
-        expect(@stat_tracker.lowest_total_score).to be_a(Integer)
-        expect(@stat_tracker.lowest_total_score).to eq(0)
+        lowest_total_score = @stat_tracker.lowest_total_score
+
+        expect(lowest_total_score).to be_a(Integer)
+        expect(lowest_total_score).to eq(0)
       end
     end
 
